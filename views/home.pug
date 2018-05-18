@@ -1,0 +1,52 @@
+html
+    head
+        title Game Review
+        link(rel="stylesheet", href="/css/styles.css")
+
+    body
+        div(class="container")
+            ul
+                li
+                    a(href="/") Home
+                li
+                    a(href="login") Login
+                li
+                    if user
+                        p(id="pp") Bienvenue #{user.username}
+
+        h1 Bienvenue sur Game Review
+
+        div(class="signin")
+            form(method="post", action="api/signin")
+                input(type="text", name="username", placeholder="username")
+                input(type="text", name="password", placeholder="password")
+                button(type="submit") Log in
+
+        div(class="artform")
+            if user
+                p #{user.username} Créez votre article!
+
+                form(method="post", action="api/rev")
+                    ul
+                        li: input(type="text", name="game", placeholder="Game Name")
+                        li: input(type="text", name="title", placeholder="Title")
+                        li: input(type="text", name="content", placeholder="Votre Review")
+                        li: input(type="number", name="note", placeholder="Votre note sur 10")
+                        li: button(type="submit") Créer
+
+
+            if reviews
+                div(class="list")
+                    for review in reviews
+                        ul
+                            li: p -----
+                            li: h1 Jeu: #{review.game}
+                            li: h2 Review: #{review.title}
+                            li: p L'avis: #{review.content}
+                            li: p Posté par #{review.poster}
+                            li: p Note: #{review.note}/10
+                            li: p Note des comments #{review.useful}
+                            li
+                                //p L'article a été utile?
+                                //    form(method="post", action="api/upvote")
+                                        button(type="submit") Utile

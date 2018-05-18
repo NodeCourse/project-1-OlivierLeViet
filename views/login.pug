@@ -1,0 +1,20 @@
+html
+    head
+        title Game Review
+        link(rel="stylesheet", href="/css/login.css")
+
+    body
+        div(class="container")
+            ul
+                li: a(href="/") Home
+                li: a(href="login") Login
+
+        h1 Inscription
+
+        div(class="login")
+            form(method="post", action="api/signup")
+                ul
+                    li: input(type="text", name="username", placeholder="Pseudo")
+                    li: input(type="text", name="email", placeholder="Email")
+                    li: input(type="text", name="password", placeholder="Password")
+                    li: button(type="submit") S'inscrire
